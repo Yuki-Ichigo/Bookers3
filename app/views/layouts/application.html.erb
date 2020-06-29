@@ -4,12 +4,47 @@
     <title>Bookers3</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!-- awesome -->
+    <script src="https://kit.fontawesome.com/53e26cc2b1.js" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+<!-- ★ -->
+<div class="page-header">
+  <h1 class="logo">Bookers
+   <% if user_signed_in? %>
+      <small class="top">
+        <%= link_to "Home", user_path(current_user.id) %>
+      </small>
+      <small class="top">
+        <%= link_to 'Users', users_path %>
+      </small>
+      <small class="top">
+        <%= link_to 'Books', books_path %>
+      </small>
+      <small class="top">
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+      </small>
+    <% else %>
+      <small class="top">
+        <%= link_to "Log in", new_user_session_path %>
+      </small>
+      <small class="top">
+        <%= link_to "Sign Up", new_user_registration_path %>
+      </small>
+      </h1>
+    <% end %>
+</div>
+
     <%= yield %>
+
+　<footer>
+  <p>CopyRight Infratop.inc</p>
+  </footer>
+
   </body>
+
 </html>
